@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
   def index 
-    users = User.all
-
-    render json: users #renders our users in json format
-
-    # render plain: "I'm in the index action!"
+    users = User.find_by(username: params[:name])
+    # if something LIKE 'localhost:3000/users/?%'
+    if users.nil?
+      render json: User.all 
+    else 
+      render json: users
+    end
   end
 
   def create

@@ -9,17 +9,18 @@
 #  updated_at :datetime         not null
 #
 class ArtworkShare < ApplicationRecord
-  # validates :viewer_id, presence: true, uniqueness: {scope: :artwork_id, 
-  # message: "Should only have viewed an artwork once"}
+  validates :viewer_id, presence: true, uniqueness: {scope: :artwork_id, 
+  message: "Should only have viewed an artwork once"}
   # validates :artwork_id,  presence: true, uniqueness: {scope: :viewer_id,
   # message: "Should only have one instance of a viewer"}
 
   belongs_to :viewer,
   foreign_key: :viewer_id,
+  dependent: :destroy,
   class_name: :User
 
   belongs_to :artwork,
-  foreign_key: :artist_id,
+  foreign_key: :artwork_id,
   class_name: :Artwork
 
 end

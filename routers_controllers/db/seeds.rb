@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.delete_all
+ArtworkShare.delete_all 
+Comment.delete_all
 
+User.delete_all
 u1 = User.create(username: "Artist1", email: "artist1@appacademy.io")
 u2 = User.create(username: "Artist2", email: "artist2@appacademy.io")
 u3 = User.create(username: "Artist3", email: "artist3@appacademy.io")
@@ -22,8 +24,12 @@ a2 = Artwork.create(artist_id: u2.id, title: "Goodybe", image_url: "goodbye.png"
 a3 = Artwork.create(artist_id: u3.id, title: "Farewell", image_url: "farewell.png")
 a4 = Artwork.create(artist_id: u4.id, title: "Adios", image_url: "adios.png")
 
-ArtworkShare.delete_all 
 ArtworkShare.create(artwork_id: a1.id, viewer_id: u1.id)
 ArtworkShare.create(artwork_id: a2.id, viewer_id: u2.id)
 ArtworkShare.create(artwork_id: a3.id, viewer_id: u3.id)
 ArtworkShare.create(artwork_id: a4.id, viewer_id: u4.id)
+
+Comment.create(author_id: u1.id, artwork_id: a1.id, body: "I love this painting!")
+Comment.create(author_id: u2.id, artwork_id: a2.id, body: "I hate this painting!")
+Comment.create(author_id: u3.id, artwork_id: a3.id, body: "I heart this painting!")
+Comment.create(author_id: u4.id, artwork_id: a4.id, body: "I don't heart this painting!")
